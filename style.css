@@ -1,0 +1,30 @@
+#map {
+  height: 97vh;
+}
+
+.leaflet-container {
+  background: white;
+}
+
+.icon {
+  font-size: 24px;
+  text-shadow: -1px -1px 0 #FFF, 1px 1px 0 #FFF, -1px 1px 0 #FFF, 1px -1px 0 #FFF;
+}
+
+.icon-spawn {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.icon-mountain {
+  color: red;
+}
+
+.icon-plains {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000;
+}
+
+.icon-river {
+  color: blue;
+}
