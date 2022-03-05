@@ -11,8 +11,9 @@
   </head>
   <body>
     <div id="map"></div>
-	<div id="version">0.0.2-draft</div>
+	<div id="version">0.0.3-draft</div>
     <script>
+	var nodeMap = [];
 	var bounds = new L.LatLngBounds(new L.LatLng(0, 0), new L.LatLng(180, 180));
 	var overlay = new L.ImageOverlay("chart.jpg",
 	  bounds, {
@@ -27,7 +28,7 @@
 	  layers: [overlay],
 	  maxBounds: bounds
 	});
-
+	map.getRenderer(map).options.padding = 100;
 	map.fitBounds(bounds);
 
 	map.on('click', function(e) {
@@ -37,13 +38,13 @@
 	  console.log(pp.lat + "\t" + pp.lng);
 	});
 
-	function createTooltip(data) {
+	function createTooltip(node) {
 
-	  let tooltip = "<b>" + data[0] + "</b><br/>";
-	  tooltip += "<b>Space: </b>" + data[5] +"<br/>";
+	  let tooltip = "<b>" + node[0] + "</b><br/>";
+	  tooltip += "<b>Space: </b>" + node[6] +"<br/>";
 	  tooltip += "<b>Resources:</b><br/>";
-	  for (let i = 6; i < data.length; i++) {
-		tooltip += data[i] + "<br/>";
+	  for (let i = 7; i < node.length; i++) {
+		tooltip += node[i] + "<br/>";
 	  }
 
 	  return tooltip;
@@ -52,12 +53,14 @@
 	$.get("https://content-sheets.googleapis.com/v4/spreadsheets/1-WgmASMM6UFd-mKJD7F-NsEmd6wxcBbk73hjtpDMO_8/values/'DB Map'!A2:AA?key=AIzaSyCPjKuJDVFpxEQ4D7krj5cPdUXYjDqSqkw", function(data) {
 	  console.log(JSON.stringify(data));
 	  let iconAnchor = L.point(18, 18);
-	  for (let p of data.values) {
-		let nodeName = p[0];
-		let nodeType = p[1];
-		let terrain = p[2];
-		let x = p[3];
-		let y = p[4];
+	  for (let node of data.values) {
+		let nodeName = node[0];
+	    nodeMap[nodeName] = node;
+		let nodeType = node[1];
+		let terrain = node[2];
+		let x = node[3];
+		let y = node[4];
+		let paths = node[5];
 
 		let myIcon = L.divIcon({
 		  iconAnchor: iconAnchor,
@@ -65,12 +68,37 @@
 		  html: nodeName
 		});
 
-		let toolTip = createTooltip(p);
+		let toolTip = createTooltip(node);
 
-		L.marker([x, y], {
+		let marker = L.marker([x, y], {
 		  icon: myIcon
-		}).bindTooltip(toolTip).addTo(map);
+		}).bindTooltip(toolTip);
+		
+		nodeMap[nodeName].marker = marker;
+		
+		marker.addTo(map);
 	  }
+	  
+	  // apply paths
+	  for (let nodeFrom of data.values) {
+		let paths = nodeFrom[5];
+	    
+		if (paths && paths.length) {
+		  
+		  let pathArray = paths.split(',');
+		  
+		  for (let nodeToName of pathArray) {
+		    let nodeTo = nodeMap[nodeToName];
+			
+			if (nodeTo) {
+				L.polyline([[nodeFrom[3],nodeFrom[4]],[nodeTo[3],nodeTo[4]]]).setStyle({ color: '#F8FDC6' }).addTo(map);
+			}
+		  }
+		  
+		}
+		
+	  }
+	  
 	});
     </script>
   </body>
