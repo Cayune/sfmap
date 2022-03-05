@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="leaflet.css" />
     <script src="leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.write('<link href="style.css?v='+ new Date().getTime() +'" rel="stylesheet" type="text/css" />');
+    </script>
+
   </head>
   <body>
     <div id="map"></div>
