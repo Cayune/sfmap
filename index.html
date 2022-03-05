@@ -11,6 +11,7 @@
   </head>
   <body>
     <div id="map"></div>
+	<div id="version">0.0.2-draft</div>
     <script>
 	var bounds = new L.LatLngBounds(new L.LatLng(0, 0), new L.LatLng(180, 180));
 	var overlay = new L.ImageOverlay("chart.jpg",
@@ -21,7 +22,8 @@
 
 	var map = new L.Map('map', {
 	  center: bounds.getCenter(),
-	  zoom: 9,
+	  minZoom: 3,
+	  maxZoom: 5,
 	  layers: [overlay],
 	  maxBounds: bounds
 	});
