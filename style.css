@@ -15,7 +15,7 @@
 
 .icon {
   font-size: 24px;
-  text-shadow: -1px -1px 0 #FFF, 1px 1px 0 #FFF, -1px 1px 0 #FFF, 1px -1px 0 #FFF;
+  text-shadow: -1px -1px 0 white, 1px 1px 0 white, -1px 1px 0 white, 1px -1px 0 white;
 }
 
 .icon-spawn, .icon-camp {
@@ -23,18 +23,17 @@
   font-size: 28px;
 }
 
-.icon-mountain {
+.icon-mountain, .icon-river {
   color: blue;
 }
 
 .icon-forest {
   color: red;
-  text-shadow: -1px -1px 0 white, 1px 1px 0 white, -1px 1px 0 white, 1px -1px 0 white;
+  text-shadow: -1px -1px 0 #bb0000, 1px 1px 0 #bb0000, -1px 1px 0 #bb0000, 1px -1px 0 #bb0000;
 }
 
 .icon-deepforest {
-  color: fuchsia;
-  text-shadow: -1px -1px 0 white, 1px 1px 0 white, -1px 1px 0 white, 1px -1px 0 white;
+  color: brown;
 }
 
 .icon-plains {
@@ -42,7 +41,3 @@
   text-shadow: -1px -1px 0 black, 1px 1px 0 black, -1px 1px 0 black, 1px -1px 0 black;
 }
 
-.icon-river {
-  color: orange;
-  text-shadow: -1px -1px 0 black, 1px 1px 0 black, -1px 1px 0 black, 1px -1px 0 black;
-}
