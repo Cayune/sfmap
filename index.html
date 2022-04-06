@@ -40,6 +40,19 @@
 	  var pp = map.layerPointToLatLng(L.point(x, y));
 	  console.log(pp.lat + "\t" + pp.lng);
 	});
+	    
+    	map.on("zoomend", () => {
+	  let icon = $('.icon')
+	  let iconSpawn = $('.iconSpawn')
+
+		if(map.getZoom() < 4) { //zoomed out, 3
+	    icon.css("font-size", 12)
+	    // iconSpawn.css("font-size", 18) //doesn't work
+	  } else { //zoomed in, 5
+	    icon.css("font-size", 24)
+	    // iconSpawn.css("font-size", 28) //doesn't work
+	  }
+	})
 
 	function createTooltip(node) {
 
