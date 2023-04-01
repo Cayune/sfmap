@@ -66,7 +66,7 @@
 	  return tooltip;
 	}
 
-	$.get("https://content-sheets.googleapis.com/v4/spreadsheets/1sVN4PqY8mhzU5ZOgDC59ZJwNEUn0DRAfDT8ovM9Waqw/values/'DB Map'!A2:AA?key=AIzaSyAEpmrixheF2z9u6-wHLB_KtSAzh8mS4Os", function(data) {
+	$.get("https://content-sheets.googleapis.com/v4/spreadsheets/1sVN4PqY8mhzU5ZOgDC59ZJwNEUn0DRAfDT8ovM9Waqw/values/'DB Map - Quarry Mine'!A2:AA?key=AIzaSyAEpmrixheF2z9u6-wHLB_KtSAzh8mS4Os", function(data) {
 	  console.log(JSON.stringify(data));
 	  let iconAnchor = L.point(18, 18);
 	  for (let node of data.values) {
